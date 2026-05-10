@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Mom</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="customAlert" class="alert-overlay">
+        <div class="alert-box">
+            <p id="alertMessage"></p>
+            <button class="nav-btn" id="alertConfirmBtn" onclick="closeAlert()">Okay </button>
+        </div>
+    </div>
+
+    <div id="welcomeScreen">
+        <div class="welcome-content">
+            <div id="step1">
+              <h1>Hello Mama!</h1>
+                <h2>Would you like to see what I have prepared for u?</h2>
+                <div class="intro-buttons">
+                    <button class="nav-btn" onclick="nextStep(2)">Yes</button>
+                    <button class="nav-btn" onclick="showAlert('Please click \'Yes\' Mama 😊')">No</button>
+                </div>
+            </div>
+
+            <div id="step2" style="display: none;">
+                <h2>Are you ready?</h2>
+                <div class="intro-buttons">
+                    <button class="nav-btn" onclick="nextStep(3)">Yes</button>
+                    <button class="nav-btn" onclick="showAlert('Please click \'Yes\' Mama 😊')">No</button>
+                </div>
+            </div>
+
+            <div id="step3" style="display: none;">
+                <h2>Click heart to open my gift.<br>Click broken heart to leave.</h2>
+                <div class="intro-buttons">
+                    <button class="heart-btn" onclick="enterSite()">❤️</button>
+                    <button class="heart-btn" onclick="forcedChoice()">💔</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainContent" style="display: none; opacity: 0;">
+        <div class="container">
+            <h1>Happy Mother's Day!</h1>
+            <div class="card">
+                <button id="revealBtn" onclick="showLetter()">Click for a message</button>
+                <p style="text-align: justify">You made it! Welcome to your Mother's Day dashboard. Since you didn't have a choice but to come here, you might as well enjoy the view. Check out our messages and some of our favorite memories together! ❤️</p>
+            </div>
+            <button id="galleryBtn" onclick="showGallery()">Click to view</button>
+        </div> 
+
+        <div id="fullScreenMessage" class="overlay">
+            <button class="close-btn" onclick="closeLetter()">×</button>
+            <div class="overlay-content">
+                <div class="message-box">
+                    <h1 style="color: white;">For My Dearest Mama</h1>
+                    <div class="slider-wrapper" id="sliderWrapper">
+                        <div class="slide">
+                            <p>Happy Mother's Day to the woman who has been my greatest teacher, my constant advocate, and my first friend. Your strength and grace have shaped the way I see the world, and your unconditional love is the foundation for everything I do.</p>
+                    
+                    <p>Thank you for the countless sacrifices you’ve made and the quiet ways you make every day brighter just by being yourself. You have a heart of gold and a spirit that inspires everyone around you. I am so incredibly lucky to call you my mom. I hope today brings you as much joy as you give to me.</p>
+                            <p style="text-align: right; margin-top: 10px; font-size: 16px; padding-right: 25px;">-Abing</p>
+                        </div>
+                        <div class="slide">
+                            <p>Thank you for the countless sacrifices you’ve made and the quiet ways you make every day brighter just by being yourself.</p>
+                            <p style="text-align: right; margin-top: 10px; font-size: 16px; padding-right: 25px;">-Totoy</p>
+                        </div>
+                        <div class="slide">
+                            <p>No matter how far apart we are, I carry your lessons and your love with me every single day. You've taught me how to be kind and strong.</p>
+                            <p style="text-align: right; margin-top: 10px; font-size: 16px; padding-right: 25px;">-Kulot</p>    
+                        </div>
+                        <div class="slide">
+                            <p>I am so incredibly lucky to call you my mom. I hope today brings you as much joy as you give to me every day.</p>
+                            <p style="text-align: right; margin-top: 10px; font-size: 16px; padding-right: 25px;">-Bihan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button class="nav-btn hidden-btn" id="prevBtn" onclick="moveSlide(-1)">← Previous</button>
+                    <button class="nav-btn" id="nextBtn" onclick="moveSlide(1)">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="fullScreenGallery" class="overlay">
+            <button class="close-btn" onclick="closeGallery()">×</button>
+            <div class="overlay-content">
+                <div class="message-box">
+                    <h1 style="color: white;">Our Memories</h1>
+                    <div class="gallery">
+                        <img src="https://i.postimg.cc/wBfbk1rQ/mom1.jpg" alt="Photo 1">
+                        <img src="https://i.postimg.cc/Xqw8tqsK/mom2.jpg" alt="Photo 2">
+                        <img src="https://i.postimg.cc/ncXVKmw0/Messenger-creation-6C201130-DFF6-48E5-B8DA-B96430065AB0.jpg" alt="Photo 3">
+                        <img src="https://i.postimg.cc/PxfTCvwd/IMG-20260510-133836.jpg" alt="Photo 4">
+                        <img src="https://i.postimg.cc/Kjw2p9sP/IMG-20260510-134040.jpg" alt="Photo 5">
+                        <img src="https://i.postimg.cc/mgx4Q59f/IMG-20260510-134150.jpg" alt="Photo 6">
+                    </div>
+                    <p style="text-align: center; margin-top: 20px; font-style: italic; font-size: 14px; padding-bottom: 20px;">Click the × to go back</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Custom Alert Logic
+        function showAlert(msg) {
+            document.getElementById('alertMessage').innerText = msg;
+            document.getElementById('customAlert').style.display = 'flex';
+            // Default reset of button behavior
+            document.getElementById('alertConfirmBtn').onclick = closeAlert;
+        }
+
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        // Intro Logic
+        function nextStep(step) {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step' + step).style.display = 'block';
+        }
+
+        function forcedChoice() {
+            showAlert("You have no choice but to open my gift 😊");
+            // Change button behavior specifically for this forced choice
+            document.getElementById('alertConfirmBtn').onclick = function() {
+                closeAlert();
+                enterSite();
+            };
+        }
+
+        function enterSite() {
+            const welcome = document.getElementById('welcomeScreen');
+            const main = document.getElementById('mainContent');
+            welcome.style.opacity = '0';
+            setTimeout(() => {
+                welcome.style.display = 'none';
+                main.style.display = 'block';
+                setTimeout(() => { main.style.opacity = '1'; }, 50);
+            }, 500);
+        }
+
+        // Card/Slider Logic
+        let currentSlide = 0;
+        const totalSlides = 4;
+        function showLetter() { document.getElementById("fullScreenMessage").style.display = "flex"; }
+        function showGallery() { document.getElementById("fullScreenGallery").style.display = "flex"; }
+        function closeGallery() { document.getElementById("fullScreenGallery").style.display = "none"; }
+        
+        function moveSlide(direction) {
+            currentSlide += direction;
+            const offset = currentSlide * -25;
+            document.getElementById("sliderWrapper").style.transform = `translateX(${offset}%)`;
+            const nextBtn = document.getElementById("nextBtn");
+            const prevBtn = document.getElementById("prevBtn");
+            if (currentSlide === 0) {
+                prevBtn.classList.add("hidden-btn");
+                nextBtn.classList.remove("hidden-btn");
+            } else if (currentSlide === totalSlides - 1) {
+                prevBtn.classList.remove("hidden-btn");
+                nextBtn.classList.add("hidden-btn");
+            } else {
+                prevBtn.classList.remove("hidden-btn");
+                nextBtn.classList.remove("hidden-btn");
+            }
+        }
+
+        function closeLetter() {
+            document.getElementById("fullScreenMessage").style.display = "none";
+            setTimeout(() => {
+                currentSlide = 0;
+                document.getElementById("sliderWrapper").style.transform = "translateX(0)";
+                document.getElementById("prevBtn").classList.add("hidden-btn");
+                document.getElementById("nextBtn").classList.remove("hidden-btn");
+            }, 300);
+        }
+    </script>
+</body>
+  </html>
+  
