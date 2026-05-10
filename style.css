@@ -1,0 +1,130 @@
+body {
+    background-color: #fff0f5; 
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%;
+    gap: 20px; 
+    padding-bottom: 50px;
+}
+
+h1 {
+    color: #d81b60;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 85%;
+    text-align: center;
+}
+
+#galleryBtn, #revealBtn {
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;     
+    width: fit-content;    
+    box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+}
+
+/* Overlay Styling */
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    background-color: #e89eb8; 
+}
+
+.overlay-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* THE ORGANIZED BOX */
+.message-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 25px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    color: white;
+}
+
+.message-box h1 {
+    color: white;
+    margin-top: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 50px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+/* Hearts & Gallery (Keep your existing code here) */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  color: #ff69b4;
+  font-size: 20px;
+  animation: float 4s linear infinite;
+  opacity: 0;
+  z-index: 1000;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 180px; 
+  object-fit: cover; 
+  border-radius: 12px;
+}
+
+#photoGallery h3 {
+    color: #d81b60;
+    text-align: center;
+}
